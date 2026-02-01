@@ -55,19 +55,26 @@ git push -u origin main
 
 ## 3. Подключение проекта к Vercel
 
+**Репо на GitHub есть, но деплой сам не пошёл** — так и должно быть. Vercel не подключается к репо автоматически. Нужно один раз вручную создать проект и привязать репозиторий (шаги ниже). После этого каждый `git push` будет запускать деплой.
+
 ### Вариант A: через сайт Vercel (рекомендуется)
 
-1. Зайдите на **[vercel.com](https://vercel.com)** и войдите (через GitHub).
-2. Нажмите **Add New… → Project**.
-3. Выберите **Import Git Repository** и найдите ваш репозиторий.
-4. Настройки оставьте по умолчанию:
+1. Зайдите на **[vercel.com](https://vercel.com)** и войдите через **GitHub** (логин через GitHub обязателен, чтобы видеть репозитории).
+2. Нажмите **Add New…** → **Project**.
+3. В блоке **Import Git Repository** найдите **www.sai-technology.com** (или `Saitosar/www.sai-technology.com`). Если репо нет в списке:
+   - Нажмите **Adjust GitHub App Permissions** и выдайте Vercel доступ к нужной организации/аккаунту или к этому репо.
+   - Либо **Import** другого репо — вставьте URL: `https://github.com/Saitosar/www.sai-technology.com`.
+4. Нажмите **Import** рядом с репозиторием.
+5. Настройки оставьте по умолчанию:
    - **Framework Preset:** Next.js (определится автоматически)
    - **Root Directory:** `./`
    - **Build Command:** `next build`
-   - **Output Directory:** (пусто, по умолчанию для Next.js)
-5. Нажмите **Deploy**.
+   - **Output Directory:** (пусто)
+6. Нажмите **Deploy**.
 
-После первого деплоя приложение будет доступно по адресу вида `ваш-проект.vercel.app`.
+После первого деплоя приложение будет доступно по адресу вида `www-sai-technology-com.vercel.app`. Дальше при каждом пуше в `main` Vercel будет деплоить автоматически.
+
+**Если сборка прошла, но появилась ошибка «No Output Directory named public»:** в проекте Vercel зайдите в **Settings → General → Build & Development Settings** и в поле **Output Directory** оставьте пустым (удалите `public`, если там указано). Для Next.js Vercel сам использует результат сборки; папка `public` для вывода не нужна.
 
 ### Вариант B: через Vercel CLI
 
