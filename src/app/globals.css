@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --electric-blue: #00d4ff;
+  --cyber-lime: #b8ff3c;
+  --bg: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: #e5e5e5;
+}
+
+/* Glassmorphism base */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+/* Neon text glow */
+.text-glow-blue {
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.text-glow-lime {
+  text-shadow: 0 0 20px rgba(184, 255, 60, 0.6), 0 0 40px rgba(184, 255, 60, 0.3);
+}
+
+/* Button neon hover */
+.btn-neon:hover {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+.btn-neon-lime:hover {
+  box-shadow: 0 0 20px rgba(184, 255, 60, 0.5), 0 0 40px rgba(184, 255, 60, 0.2);
+  text-shadow: 0 0 10px rgba(184, 255, 60, 0.8);
+}
