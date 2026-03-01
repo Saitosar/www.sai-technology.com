@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { Mail } from "lucide-react";
-
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 py-12 md:py-16">
@@ -18,13 +15,6 @@ export default function Footer() {
             SAI Vertex
           </motion.p>
           <div className="flex items-center gap-6 flex-wrap justify-center">
-            <Link
-              href="mailto:contact@sai-technology.com"
-              className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-electric-blue transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              Email
-            </Link>
             <a
               href="https://www.sai-technology.com"
               target="_blank"

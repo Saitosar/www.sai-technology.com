@@ -1,57 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageCircle, Linkedin, Calendar } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
+const PHONE = "+998990243225";
 const contactLinks = [
   {
-    href: "mailto:contact@sai-technology.com",
-    icon: Mail,
-    label: "Email",
-    value: "contact@sai-technology.com",
-  },
-  {
-    href: "https://wa.me/",
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "WhatsApp",
-  },
-  {
-    href: "tel:",
+    href: `tel:${PHONE.replace(/\s/g, "")}`,
     icon: Phone,
     label: "Phone",
-    value: "Phone",
+    value: PHONE,
   },
   {
-    href: "https://linkedin.com/company/",
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "Company LinkedIn",
-  },
-];
-
-const ctaItems = [
-  {
-    title: "Book a Strategic Call",
-    description: "Schedule a discovery call with our team",
-    icon: Calendar,
-    href: "#contact",
-  },
-  {
-    title: "Pilot Inquiry Form",
-    description: "Request a pilot consultation for your use case",
-    icon: Mail,
-    href: "#contact",
-  },
-  {
-    title: "Partnership Inquiry",
-    description: "Explore strategic partnership opportunities",
-    icon: Linkedin,
-    href: "#contact",
+    href: `https://wa.me/${PHONE.replace(/\D/g, "")}`,
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: PHONE,
   },
 ];
 
 export default function ContactSection() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(data.error || "Failed to send");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage("Failed to send message");
+    }
+  }
+
   return (
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
       <div
@@ -86,7 +94,11 @@ export default function ContactSection() {
                     key={link.label}
                     href={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass border border-white/10 text-gray-400 hover:text-electric-blue hover:border-electric-blue/30 transition-colors"
                   >
                     <Icon className="w-4 h-4" />
@@ -99,36 +111,47 @@ export default function ContactSection() {
 
           <div className="space-y-6">
             <h3 className="text-lg font-bold text-white mb-4">
-              Quick Actions
+              Send a Message
             </h3>
-            <div className="flex flex-col gap-4">
-              {ctaItems.map((cta, index) => {
-                const Icon = cta.icon;
-                return (
-                  <motion.a
-                    key={cta.title}
-                    href={cta.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-4 p-4 rounded-xl glass border border-electric-blue/20 hover:border-electric-blue/50 transition-all duration-300 group"
-                  >
-                    <div className="p-2 rounded-lg bg-electric-blue/10 group-hover:bg-electric-blue/20 transition-colors">
-                      <Icon className="w-5 h-5 text-electric-blue" />
-                    </div>
-                    <div className="flex-1">
-                      <span className="font-medium text-white block">
-                        {cta.title}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        {cta.description}
-                      </span>
-                    </div>
-                  </motion.a>
-                );
-              })}
-            </div>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-4"
+            >
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Name / Company name"
+                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Email address"
+                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors"
+              />
+              <textarea
+                name="message"
+                required
+                rows={4}
+                placeholder="Your message"
+                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors resize-none"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="px-6 py-3 rounded-lg font-medium border border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === "loading" ? "Sending…" : "Send"}
+              </button>
+              {status === "success" && (
+                <p className="text-sm text-cyber-lime">Message sent successfully.</p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-red-400">{errorMessage}</p>
+              )}
+            </form>
           </div>
         </div>
       </div>
