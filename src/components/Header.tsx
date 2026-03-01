@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "#products", label: "Products" },
-  { href: "#expertise", label: "Expertise" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#why-us", label: "Why Us" },
+  { href: "#deployment", label: "Deployment" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -23,12 +25,18 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
-          <Link
-            href="/"
-            className="text-xl md:text-2xl font-semibold tracking-[0.35em] uppercase text-white hover:text-electric-blue transition-colors duration-300"
-            style={{ letterSpacing: "0.35em" }}
-          >
-            SAI Intelligence
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/sai-vertex-logo.png"
+              alt=""
+              width={180}
+              height={48}
+              priority
+              className="h-10 w-auto md:h-12"
+            />
+            <span className="text-xl font-semibold tracking-wider text-white">
+              SAI Vertex
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">

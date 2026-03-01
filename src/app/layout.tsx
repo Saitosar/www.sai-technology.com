@@ -8,9 +8,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SAI Intelligence Tech Group | Redefining Intelligence through Ecosystems",
+  title: "SAI Vertex | Enterprise Robotics Integration Partner | Central Asia & MENA",
   description:
-    "A multi-disciplinary tech group building the next generation of AI-driven platforms.",
+    "We transform intelligent robots into enterprise-ready business assets through localization, integration, and middleware solutions. Request a pilot consultation.",
 };
 
 export default function RootLayout({

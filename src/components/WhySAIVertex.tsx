@@ -2,38 +2,44 @@
 
 import { motion } from "framer-motion";
 import {
-  LayoutGrid,
-  Brain,
-  TrendingUp,
+  Globe,
+  Handshake,
+  Cpu,
+  Code2,
+  Wrench,
 } from "lucide-react";
 
-const expertiseItems = [
+const whyItems = [
   {
-    icon: LayoutGrid,
-    title: "Enterprise Architecture",
-    description:
-      "Designing scalable, resilient systems that align technology with business strategy.",
+    icon: Globe,
+    title: "Regional Center of Embodied Intelligence",
     color: "blue" as const,
   },
   {
-    icon: Brain,
-    title: "AI Integration",
-    description:
-      "Embedding intelligence into workflows with cutting-edge ML and automation.",
+    icon: Handshake,
+    title: "Strategic Partnership with Global Robotics Manufacturer",
     color: "lime" as const,
   },
   {
-    icon: TrendingUp,
-    title: "Digital Transformation",
-    description:
-      "Guiding organizations through technology-led change and innovation.",
+    icon: Cpu,
+    title: "Enterprise Integration Expertise",
+    color: "blue" as const,
+  },
+  {
+    icon: Code2,
+    title: "AI Middleware Development Capability",
+    color: "lime" as const,
+  },
+  {
+    icon: Wrench,
+    title: "Local Service & Deployment Team",
     color: "blue" as const,
   },
 ];
 
-export default function Expertise() {
+export default function WhySAIVertex() {
   return (
-    <section id="expertise" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="why-us" className="relative py-24 md:py-32 overflow-hidden">
       <div
         className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
         aria-hidden
@@ -46,15 +52,15 @@ export default function Expertise() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Our <span className="text-cyber-lime text-glow-lime">Expertise</span>
+            Why <span className="text-electric-blue text-glow-blue">SAI Vertex</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Core capabilities that power our ecosystem approach.
+            Strategic positioning as a serious regional player.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {expertiseItems.map((item, index) => {
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {whyItems.map((item, index) => {
             const Icon = item.icon;
             const isLime = item.color === "lime";
 
@@ -86,12 +92,9 @@ export default function Expertise() {
                     }`}
                   />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-lg font-bold text-white leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {item.description}
-                </p>
               </motion.div>
             );
           })}

@@ -1,7 +1,11 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ProductShowcase from "@/components/ProductShowcase";
-import Expertise from "@/components/Expertise";
+import MarketReality from "@/components/MarketReality";
+import SolutionsByIndustry from "@/components/SolutionsByIndustry";
+import WhySAIVertex from "@/components/WhySAIVertex";
+import DeploymentModel from "@/components/DeploymentModel";
+import TrustSection from "@/components/TrustSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -9,8 +13,12 @@ export default function Home() {
     <main className="min-h-screen bg-black">
       <Header />
       <Hero />
-      <ProductShowcase />
-      <Expertise />
+      <MarketReality />
+      <SolutionsByIndustry />
+      <WhySAIVertex />
+      <DeploymentModel />
+      <TrustSection />
+      <ContactSection />
       <Footer />
     </main>
   );
