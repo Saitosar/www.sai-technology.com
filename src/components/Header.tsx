@@ -9,8 +9,8 @@ import { useState } from "react";
 import { useActiveSection } from "@/contexts/ActiveSectionContext";
 
 const navLinks = [
-  { hash: "solutions", label: "Solutions" },
   { hash: "why-us", label: "Why Us" },
+  { hash: "solutions", label: "Solutions" },
   { hash: "deployment", label: "Deployment" },
   { hash: "governance", label: "Governance" },
   { hash: "contact", label: "Contact" },
@@ -56,7 +56,7 @@ export default function Header() {
               priority
               className="h-10 w-auto md:h-12"
             />
-            <span className="text-xl font-semibold tracking-wider text-white">
+            <span className="font-heading text-xl font-semibold tracking-wider text-white">
               SAI Vertex
             </span>
           </Link>
@@ -68,7 +68,7 @@ export default function Header() {
                 <Link
                   key={link.hash}
                   href={getHref(link.hash)}
-                  className={`cursor-pointer text-sm transition-colors duration-300 tracking-wider focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded ${
+                  className={`font-heading cursor-pointer text-sm transition-colors duration-300 tracking-wider focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded ${
                     isActive ? "text-electric-blue" : "text-gray-400 hover:text-electric-blue"
                   }`}
                 >
@@ -101,7 +101,7 @@ export default function Header() {
                 <Link
                   key={link.hash}
                   href={getHref(link.hash)}
-                  className={`cursor-pointer transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded ${
+                  className={`font-heading cursor-pointer transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded ${
                     isActive ? "text-electric-blue" : "text-gray-400 hover:text-electric-blue"
                   }`}
                   onClick={() => setMobileOpen(false)}

@@ -8,9 +8,9 @@ import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";
 export default function DeploymentModel() {
   const sectionRef = useSectionInView("deployment");
   return (
-    <section ref={sectionRef} id="deployment" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
+    <section ref={sectionRef} id="deployment" className="relative py-20 md:py-24 overflow-hidden border-t border-white/5">
       <div
-        className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
+        className="absolute inset-0 bg-chip-pattern bg-pattern opacity-40 pointer-events-none"
         aria-hidden
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,13 +19,13 @@ export default function DeploymentModel() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={springTransition}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
             Deployment <span className="text-cyber-lime text-glow-lime">Model</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            A structured 5-step process that reduces enterprise risk.
+          <p className="text-gray-400 max-w-xl mx-auto text-sm">
+            5-step process to reduce enterprise risk.
           </p>
         </motion.div>
 
@@ -42,16 +42,15 @@ export default function DeploymentModel() {
                 key={step}
                 variants={fadeUp}
                 transition={springTransition}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="flex-1 relative"
               >
-                <div className="glass rounded-2xl p-6 border border-electric-blue/20 h-full flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-electric-blue/20 flex items-center justify-center mb-4">
-                    <span className="text-electric-blue font-bold text-lg">
+                <div className="glass rounded-xl p-4 border border-electric-blue/20 h-full flex flex-col items-center text-center">
+                  <div className="w-10 h-10 rounded-full bg-electric-blue/20 flex items-center justify-center mb-3">
+                    <span className="text-electric-blue font-bold text-base">
                       {index + 1}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white">{step}</h3>
+                  <h3 className="text-sm font-bold text-white">{step}</h3>
                 </div>
                 {index < deploymentSteps.length - 1 && (
                   <div

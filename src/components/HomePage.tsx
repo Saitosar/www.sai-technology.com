@@ -14,12 +14,12 @@ import { ActiveSectionProvider } from "@/contexts/ActiveSectionContext";
 export default function HomePage() {
   return (
     <ActiveSectionProvider>
-      <main className="min-h-screen bg-black">
+      <main className="min-h-screen bg-black bg-grid-pattern bg-grid">
         <Header />
         <Hero />
+        <WhySAIVertex />
         <SolutionsByIndustry />
         <DifferentiationSection />
-        <WhySAIVertex />
         <DeploymentModel />
         <GovernanceSection />
         <ContactSection />

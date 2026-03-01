@@ -27,42 +27,28 @@ const industries: {
     id: "retail",
     icon: Store,
     title: "Retail & Shopping Malls",
-    useCases: [
-      "Reception & guided tours",
-      "Cleaning automation",
-      "Security patrol",
-      "Warehouse assistance",
-    ],
+    useCases: ["Reception & tours", "Cleaning automation", "Security patrol"],
     accent: "blue",
   },
   {
     id: "industrial",
     icon: Factory,
     title: "Industrial & Logistics",
-    useCases: [
-      "Sorting pilots",
-      "Transport automation",
-      "Data collection",
-      "Structured manufacturing pilots",
-    ],
+    useCases: ["Sorting pilots", "Transport automation", "Data collection"],
     accent: "lime",
   },
   {
     id: "healthcare",
     icon: HeartPulse,
     title: "Healthcare",
-    useCases: [
-      "Reception assistance",
-      "Internal logistics",
-      "Data & monitoring support",
-    ],
+    useCases: ["Reception", "Internal logistics", "Monitoring support"],
     accent: "blue",
   },
   {
     id: "education",
     icon: GraduationCap,
     title: "Education & Research",
-    useCases: ["Robotics labs", "AI demonstration platforms"],
+    useCases: ["Robotics labs", "AI platforms"],
     accent: "lime",
   },
 ];
@@ -123,9 +109,9 @@ export default function SolutionsByIndustry() {
   );
 
   return (
-    <section ref={sectionRef} id="solutions" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
+    <section ref={sectionRef} id="solutions" className="relative py-20 md:py-24 overflow-hidden border-t border-white/5">
       <div
-        className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
+        className="absolute inset-0 bg-gear-pattern bg-pattern opacity-40 pointer-events-none"
         aria-hidden
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,13 +120,13 @@ export default function SolutionsByIndustry() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={springTransition}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
             Solutions by <span className="text-cyber-lime text-glow-lime">Industry</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            Industry-specific robotics integration and deployment.
+          <p className="text-gray-400 max-w-xl mx-auto text-sm">
+            Industry-specific robotics integration.
           </p>
         </motion.div>
 
@@ -168,32 +154,31 @@ export default function SolutionsByIndustry() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ ...springTransition, delay: index * 0.05 }}
-                      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                      className={`glass rounded-2xl p-6 md:p-8 h-full border transition-all duration-300 ${
+                      className={`glass rounded-2xl p-4 md:p-6 h-full border transition-colors duration-300 ${
                         isBlue
                           ? "border-electric-blue/20 hover:border-electric-blue/50 hover:shadow-glow-blue"
                           : "border-cyber-lime/20 hover:border-cyber-lime/50 hover:shadow-glow-lime"
                       }`}
                     >
                       <div
-                        className={`inline-flex p-3 rounded-xl mb-4 ${
+                        className={`inline-flex p-2.5 rounded-lg mb-3 ${
                           isBlue ? "bg-electric-blue/10" : "bg-cyber-lime/10"
                         }`}
                       >
                         <Icon
-                          className={`w-8 h-8 ${
+                          className={`w-6 h-6 ${
                             isBlue ? "text-electric-blue" : "text-cyber-lime"
                           }`}
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-4">
+                      <h3 className="text-lg font-bold text-white mb-3">
                         {industry.title}
                       </h3>
-                      <ul className="space-y-2 mb-6">
+                      <ul className="space-y-1.5 mb-4">
                         {industry.useCases.map((useCase) => (
                           <li
                             key={useCase}
-                            className="flex items-center gap-2 text-gray-400 text-sm"
+                            className="flex items-center gap-2 text-gray-400 text-xs"
                           >
                             <span
                               className={
@@ -208,7 +193,7 @@ export default function SolutionsByIndustry() {
                       </ul>
                       <a
                         href="#contact"
-                        className={`cursor-pointer inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg font-medium text-sm border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+                        className={`cursor-pointer inline-flex items-center justify-center w-full px-3 py-2 rounded-lg font-medium text-xs border transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                           isBlue
                             ? "border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon"
                             : "border-cyber-lime text-cyber-lime bg-cyber-lime/5 hover:bg-cyber-lime/10 btn-neon-lime"

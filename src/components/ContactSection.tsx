@@ -34,30 +34,26 @@ export default function ContactSection() {
   const handleStrategicCallClick = () => track("cta_enterprise_click");
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
-      <div
-        className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
-        aria-hidden
-      />
+    <section ref={sectionRef} id="contact" className="relative py-20 md:py-24 overflow-hidden border-t border-white/5">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={springTransition}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
             Get in <span className="text-cyber-lime text-glow-lime">Touch</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            Enterprise-ready contact options. Choose how you want to engage.
+          <p className="text-gray-400 max-w-xl mx-auto text-sm">
+            Choose how you want to engage.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2 mb-16">
-          <div className="space-y-6">
-            <h3 className="text-lg font-bold text-white mb-4">
+        <div className="grid gap-8 lg:grid-cols-2 mb-12">
+          <div className="space-y-4">
+            <h3 className="text-base font-bold text-white mb-3">
               Contact Options
             </h3>
             <div className="flex flex-wrap gap-4 mb-8">
@@ -82,7 +78,7 @@ export default function ContactSection() {
               })}
             </div>
 
-            <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
+            <h3 className="text-base font-bold text-white mb-3">Quick Actions</h3>
             <div className="grid gap-4 sm:grid-cols-3">
               <motion.a
                 href={CALENDLY_PLACEHOLDER}
@@ -121,8 +117,8 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-lg font-bold text-white mb-4">
+          <div className="space-y-4">
+            <h3 className="text-base font-bold text-white mb-3">
               Contact Us
             </h3>
             <ContactForm />
