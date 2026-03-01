@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased bg-black text-gray-100 min-h-screen`}>
+      <body className={`${inter.variable} ${GeistSans.variable} font-sans antialiased bg-black text-gray-100 min-h-screen`}>
         {children}
       </body>
     </html>
