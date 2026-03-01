@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
-import { useState } from "react";
+import ContactForm from "./ContactForm";
+import { CALENDLY_PLACEHOLDER, ctaLinks } from "@/content/vertex";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const PHONE = "+998990243225";
 const contactLinks = [
@@ -20,45 +23,14 @@ const contactLinks = [
   },
 ];
 
+const motionShort = { duration: 0.35 };
+
 export default function ContactSection() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
-  const [errorMessage, setErrorMessage] = useState("");
+  const { track } = useAnalytics();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string;
-
-    setStatus("loading");
-    setErrorMessage("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error || "Failed to send");
-        return;
-      }
-
-      setStatus("success");
-      form.reset();
-    } catch {
-      setStatus("error");
-      setErrorMessage("Failed to send message");
-    }
-  }
+  const handlePilotClick = () => track("cta_pilot_click");
+  const handlePartnershipClick = () => track("cta_partnership_click");
+  const handleStrategicCallClick = () => track("cta_enterprise_click");
 
   return (
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
@@ -71,6 +43,7 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={motionShort}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -86,7 +59,7 @@ export default function ContactSection() {
             <h3 className="text-lg font-bold text-white mb-4">
               Contact Options
             </h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               {contactLinks.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -107,51 +80,46 @@ export default function ContactSection() {
                 );
               })}
             </div>
+
+            <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <a
+                href={CALENDLY_PLACEHOLDER}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleStrategicCallClick}
+                className="glass rounded-xl p-4 border border-electric-blue/20 hover:border-electric-blue/50 transition-colors text-center"
+              >
+                <span className="font-medium text-white text-sm block">
+                  Book a Strategic Call
+                </span>
+              </a>
+              <Link
+                href={ctaLinks.pilot}
+                onClick={handlePilotClick}
+                className="glass rounded-xl p-4 border border-cyber-lime/20 hover:border-cyber-lime/50 transition-colors text-center"
+              >
+                <span className="font-medium text-white text-sm block">
+                  Pilot Inquiry
+                </span>
+              </Link>
+              <Link
+                href={ctaLinks.partnership}
+                onClick={handlePartnershipClick}
+                className="glass rounded-xl p-4 border border-electric-blue/20 hover:border-electric-blue/50 transition-colors text-center"
+              >
+                <span className="font-medium text-white text-sm block">
+                  Partnership Inquiry
+                </span>
+              </Link>
+            </div>
           </div>
 
           <div className="space-y-6">
             <h3 className="text-lg font-bold text-white mb-4">
-              Send a Message
+              Contact Us
             </h3>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4"
-            >
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Name / Company name"
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors"
-              />
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Email address"
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors"
-              />
-              <textarea
-                name="message"
-                required
-                rows={4}
-                placeholder="Your message"
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors resize-none"
-              />
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="px-6 py-3 rounded-lg font-medium border border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === "loading" ? "Sending…" : "Send"}
-              </button>
-              {status === "success" && (
-                <p className="text-sm text-cyber-lime">Message sent successfully.</p>
-              )}
-              {status === "error" && (
-                <p className="text-sm text-red-400">{errorMessage}</p>
-              )}
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

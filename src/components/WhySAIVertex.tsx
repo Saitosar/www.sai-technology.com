@@ -70,9 +70,9 @@ export default function WhySAIVertex() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
                 whileHover={{
-                  scale: 1.02,
+                  scale: 1.01,
                   transition: { duration: 0.2 },
                 }}
                 className={`glass rounded-2xl p-6 md:p-8 border transition-all duration-300 hover:border-opacity-50 ${

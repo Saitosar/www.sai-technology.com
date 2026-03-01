@@ -12,7 +12,15 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const {
+      name,
+      email,
+      message,
+      company,
+      role,
+      inquiryType,
+      industry,
+    } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -21,10 +29,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const payload = {
+      name,
+      email,
+      message,
+      company: company || "",
+      role: role || "",
+      inquiryType: inquiryType || "",
+      industry: industry || "",
+    };
+
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {

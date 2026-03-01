@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const steps = [
-  "Feasibility Assessment",
-  "Controlled Pilot",
-  "Localization & Integration",
-  "Operational Deployment",
-  "Scaling & Optimization",
-];
+import { deploymentSteps } from "@/content/vertex";
 
 export default function DeploymentModel() {
   return (
@@ -34,7 +27,7 @@ export default function DeploymentModel() {
 
         <div className="relative">
           <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-4">
-            {steps.map((step, index) => (
+            {deploymentSteps.map((step, index) => (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 20 }}
@@ -51,7 +44,7 @@ export default function DeploymentModel() {
                   </div>
                   <h3 className="text-lg font-bold text-white">{step}</h3>
                 </div>
-                {index < steps.length - 1 && (
+                {index < deploymentSteps.length - 1 && (
                   <div
                     className="hidden md:block absolute top-1/2 -right-2 w-4 h-0.5 bg-electric-blue/30 -translate-y-1/2 z-10"
                     aria-hidden

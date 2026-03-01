@@ -3,24 +3,30 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "#solutions", label: "Solutions" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#deployment", label: "Deployment" },
-  { href: "#contact", label: "Contact" },
+  { hash: "solutions", label: "Solutions" },
+  { hash: "why-us", label: "Why Us" },
+  { hash: "deployment", label: "Deployment" },
+  { hash: "governance", label: "Governance" },
+  { hash: "contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isContactPage = pathname === "/contact";
+  const getHref = (hash: string) =>
+    isContactPage ? `/#${hash}` : `#${hash}`;
 
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.35 }}
       className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,8 +48,8 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.hash}
+                href={getHref(link.hash)}
                 className="text-sm text-gray-400 hover:text-electric-blue transition-colors duration-300 tracking-wider"
               >
                 {link.label}
@@ -70,8 +76,8 @@ export default function Header() {
           >
             {navLinks.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.hash}
+                href={getHref(link.hash)}
                 className="text-gray-400 hover:text-electric-blue transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
