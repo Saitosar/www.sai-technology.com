@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
+import { Rajdhani, Orbitron } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const rajdhani = Rajdhani({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-rajdhani",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${GeistSans.variable} font-sans antialiased bg-black text-gray-100 min-h-screen`}>
+      <body className={`${rajdhani.variable} ${orbitron.variable} font-sans antialiased bg-black text-gray-100 min-h-screen`}>
         {children}
       </body>
     </html>
