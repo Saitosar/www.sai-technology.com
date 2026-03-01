@@ -2,19 +2,23 @@
 
 import { motion } from "framer-motion";
 import { deploymentSteps } from "@/content/vertex";
+import { springTransition, staggerContainer, fadeUp } from "@/lib/motion";
+import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";
 
 export default function DeploymentModel() {
+  const sectionRef = useSectionInView("deployment");
   return (
-    <section id="deployment" className="relative py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} id="deployment" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
       <div
         className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
         aria-hidden
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={springTransition}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -25,15 +29,20 @@ export default function DeploymentModel() {
           </p>
         </motion.div>
 
-        <div className="relative">
+        <motion.div
+          className="relative"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-4">
             {deploymentSteps.map((step, index) => (
               <motion.div
                 key={step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                variants={fadeUp}
+                transition={springTransition}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="flex-1 relative"
               >
                 <div className="glass rounded-2xl p-6 border border-electric-blue/20 h-full flex flex-col items-center text-center">
@@ -53,8 +62,7 @@ export default function DeploymentModel() {
               </motion.div>
             ))}
           </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export default function Footer() {
               href="https://www.sai-technology.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-gray-400 hover:text-electric-blue transition-colors"
+              className="cursor-pointer text-sm text-gray-400 hover:text-electric-blue transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded"
             >
               www.sai-technology.com
             </a>

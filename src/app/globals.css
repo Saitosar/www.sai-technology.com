@@ -17,6 +17,10 @@ body {
   color: #e5e5e5;
 }
 
+h1, h2, h3 {
+  font-family: var(--font-geist-sans), "Geist", system-ui, sans-serif;
+}
+
 /* Glassmorphism base */
 .glass {
   @apply bg-white/5 backdrop-blur-xl border border-white/10;
@@ -40,4 +44,29 @@ body {
 .btn-neon-lime:hover {
   box-shadow: 0 0 20px rgba(184, 255, 60, 0.5), 0 0 40px rgba(184, 255, 60, 0.2);
   text-shadow: 0 0 10px rgba(184, 255, 60, 0.8);
+}
+
+/* Subtle gradient shift for ambient background */
+@keyframes gradient-shift {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Button loading shimmer */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Section scroll margin for anchor links */
+section[id] {
+  scroll-margin-top: 5rem;
 }

@@ -11,8 +11,10 @@
     "postinstall": "npx update-browserslist-db@latest || true"
   },
   "dependencies": {
+    "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^11.11.17",
+    "geist": "^1.7.0",
     "lucide-react": "^0.460.0",
     "next": "14.2.21",
     "react": "^18.3.1",

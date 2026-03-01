@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import {
   Store,
@@ -12,6 +13,8 @@ import {
   ChevronRight,
   type LucideIcon,
 } from "lucide-react";
+import { springTransition } from "@/lib/motion";
+import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";
 
 const industries: {
   id: string;
@@ -65,11 +68,21 @@ const industries: {
 ];
 
 export default function SolutionsByIndustry() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-    slidesToScroll: 1,
-  });
+  const sectionRef = useSectionInView("solutions");
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+      slidesToScroll: 1,
+      duration: 25,
+    },
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnMouseEnter: true,
+      }),
+    ]
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -110,7 +123,7 @@ export default function SolutionsByIndustry() {
   );
 
   return (
-    <section id="solutions" className="relative py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} id="solutions" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
       <div
         className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
         aria-hidden
@@ -120,6 +133,7 @@ export default function SolutionsByIndustry() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={springTransition}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -132,7 +146,7 @@ export default function SolutionsByIndustry() {
 
         <div className="relative">
           <div
-            className="overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl"
+            className="overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl cursor-grab active:cursor-grabbing"
             ref={emblaRef}
             tabIndex={0}
             role="region"
@@ -153,6 +167,8 @@ export default function SolutionsByIndustry() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
+                      transition={{ ...springTransition, delay: index * 0.05 }}
+                      whileHover={{ y: -4, transition: { duration: 0.2 } }}
                       className={`glass rounded-2xl p-6 md:p-8 h-full border transition-all duration-300 ${
                         isBlue
                           ? "border-electric-blue/20 hover:border-electric-blue/50 hover:shadow-glow-blue"
@@ -192,7 +208,7 @@ export default function SolutionsByIndustry() {
                       </ul>
                       <a
                         href="#contact"
-                        className={`inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg font-medium text-sm border transition-all duration-300 ${
+                        className={`cursor-pointer inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg font-medium text-sm border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                           isBlue
                             ? "border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon"
                             : "border-cyber-lime text-cyber-lime bg-cyber-lime/5 hover:bg-cyber-lime/10 btn-neon-lime"
@@ -208,24 +224,26 @@ export default function SolutionsByIndustry() {
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-8">
-            <button
+            <motion.button
               type="button"
               onClick={scrollPrev}
               aria-label="Previous slide"
-              className="p-2 rounded-lg border border-white/20 text-gray-400 hover:text-white hover:border-electric-blue/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue transition-colors"
+              whileTap={{ scale: 0.98 }}
+              className="cursor-pointer p-2 rounded-lg border border-white/20 text-gray-400 hover:text-white hover:border-electric-blue/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
-            </button>
+            </motion.button>
             <div className="flex gap-2" role="tablist" aria-label="Carousel dots">
               {industries.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   type="button"
                   role="tab"
                   aria-selected={index === selectedIndex}
                   aria-label={`Go to slide ${index + 1}`}
                   onClick={() => scrollTo(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+                  whileTap={{ scale: 0.98 }}
+                  className={`cursor-pointer w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                     index === selectedIndex
                       ? "bg-electric-blue scale-125"
                       : "bg-white/30 hover:bg-white/50"
@@ -233,14 +251,15 @@ export default function SolutionsByIndustry() {
                 />
               ))}
             </div>
-            <button
+            <motion.button
               type="button"
               onClick={scrollNext}
               aria-label="Next slide"
-              className="p-2 rounded-lg border border-white/20 text-gray-400 hover:text-white hover:border-electric-blue/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue transition-colors"
+              whileTap={{ scale: 0.98 }}
+              className="cursor-pointer p-2 rounded-lg border border-white/20 text-gray-400 hover:text-white hover:border-electric-blue/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, AlertCircle } from "lucide-react";
 import { inquiryTypes, industries } from "@/content/vertex";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
@@ -148,19 +150,65 @@ export default function ContactForm({
         placeholder="Message"
         className="w-full px-4 py-3 rounded-lg glass border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:outline-none focus:border-electric-blue/50 focus:ring-1 focus:ring-electric-blue/30 transition-colors resize-none"
       />
-      <button
+      <motion.button
         type="submit"
         disabled={status === "loading"}
-        className="px-6 py-3 rounded-lg font-medium border border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
+        animate={
+          status === "loading"
+            ? {
+                boxShadow: [
+                  "0 0 0 0 rgba(0, 212, 255, 0.2)",
+                  "0 0 0 8px rgba(0, 212, 255, 0)",
+                ],
+              }
+            : {}
+        }
+        transition={
+          status === "loading"
+            ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+            : {}
+        }
+        className="relative overflow-hidden cursor-pointer px-6 py-3 rounded-lg font-medium border border-electric-blue text-electric-blue bg-electric-blue/5 hover:bg-electric-blue/10 btn-neon focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
       >
+        {status === "loading" && (
+          <span
+            className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-electric-blue/20 to-transparent"
+            style={{
+              animation: "shimmer 1.5s infinite",
+            }}
+          />
+        )}
         {status === "loading" ? "Sending…" : "Send"}
-      </button>
-      {status === "success" && (
-        <p className="text-sm text-cyber-lime">Message sent successfully.</p>
-      )}
-      {status === "error" && (
-        <p className="text-sm text-red-400">{errorMessage}</p>
-      )}
+      </motion.button>
+      <AnimatePresence mode="wait">
+        {status === "success" && (
+          <motion.p
+            key="success"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-2 text-sm text-cyber-lime"
+          >
+            <Check className="w-4 h-4 shrink-0" />
+            Message sent successfully.
+          </motion.p>
+        )}
+        {status === "error" && (
+          <motion.p
+            key="error"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-2 text-sm text-red-400"
+          >
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            {errorMessage}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </form>
   );
 }

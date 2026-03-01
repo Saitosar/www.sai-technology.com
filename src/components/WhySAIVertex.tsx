@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { springTransition, staggerContainer, fadeScale } from "@/lib/motion";
+import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";
 import {
   Globe,
   Handshake,
@@ -38,17 +40,19 @@ const whyItems = [
 ];
 
 export default function WhySAIVertex() {
+  const sectionRef = useSectionInView("why-us");
   return (
-    <section id="why-us" className="relative py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} id="why-us" className="relative py-24 md:py-32 overflow-hidden border-t border-white/5">
       <div
         className="absolute inset-0 bg-grid-pattern bg-grid opacity-40"
         aria-hidden
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={springTransition}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -59,19 +63,24 @@ export default function WhySAIVertex() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {whyItems.map((item, index) => {
+        <motion.div
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {whyItems.map((item) => {
             const Icon = item.icon;
             const isLime = item.color === "lime";
 
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
+                variants={fadeScale}
+                transition={springTransition}
                 whileHover={{
+                  y: -4,
                   scale: 1.01,
                   transition: { duration: 0.2 },
                 }}
@@ -98,7 +107,7 @@ export default function WhySAIVertex() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
