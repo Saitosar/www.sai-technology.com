@@ -11,6 +11,7 @@ import { useActiveSection } from "@/contexts/ActiveSectionContext";
 const navLinks = [
   { hash: "why-us", label: "Why Us" },
   { hash: "solutions", label: "Solutions" },
+  { hash: "store", label: "Store" },
   { hash: "deployment", label: "Deployment" },
   { hash: "governance", label: "Governance" },
   { hash: "contact", label: "Contact" },

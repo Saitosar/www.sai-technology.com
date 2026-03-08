@@ -12,6 +12,7 @@ export type SectionId =
   | "solutions"
   | "differentiation"
   | "why-us"
+  | "store"
   | "deployment"
   | "governance"
   | "contact"

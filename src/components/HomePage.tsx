@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import DifferentiationSection from "@/components/DifferentiationSection";
+import StoreSection from "@/components/StoreSection";
 import SolutionsByIndustry from "@/components/SolutionsByIndustry";
 import WhySAIVertex from "@/components/WhySAIVertex";
 import DeploymentModel from "@/components/DeploymentModel";
@@ -20,6 +21,7 @@ export default function HomePage() {
         <WhySAIVertex />
         <SolutionsByIndustry />
         <DifferentiationSection />
+        <StoreSection />
         <DeploymentModel />
         <GovernanceSection />
         <ContactSection />

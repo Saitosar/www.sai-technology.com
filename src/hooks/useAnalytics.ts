@@ -6,6 +6,7 @@ export type AnalyticsEvent =
   | "cta_pilot_click"
   | "cta_partnership_click"
   | "cta_enterprise_click"
+  | "cta_agibot_order_click"
   | "contact_submit_pilot"
   | "contact_submit_partnership"
   | "contact_submit_enterprise";
