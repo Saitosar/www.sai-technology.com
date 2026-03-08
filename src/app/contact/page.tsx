@@ -5,7 +5,7 @@ import { Suspense, useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { CALENDLY_PLACEHOLDER } from "@/content/vertex";
+import { CALENDLY_PLACEHOLDER } from "@/content/aurosy";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { motion } from "framer-motion";
 import type { InquiryType } from "@/components/ContactForm";

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, AlertCircle } from "lucide-react";
-import { inquiryTypes, industries } from "@/content/vertex";
+import { inquiryTypes, industries } from "@/content/aurosy";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 export type InquiryType = "pilot" | "partnership" | "enterprise";

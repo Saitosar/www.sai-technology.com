@@ -1,10 +1,10 @@
 /**
- * SAI Vertex landing page content - data-driven for easy copy updates.
+ * SAI AUROSY landing page content - data-driven for easy copy updates.
  */
 
 export const hero = {
   tagline: "Enterprise Robotics Integration",
-  h1: "SAI Vertex",
+  h1: "SAI AUROSY",
   h2: "Enterprise Robotics Integration & Deployment",
   subtext:
     "Software and operations layer for intelligent robots. Central Asia & MENA.",
@@ -92,7 +92,7 @@ export const inquiryTypes = [
   { value: "enterprise", label: "Enterprise Inquiry" },
 ] as const;
 
-export const CALENDLY_PLACEHOLDER = "https://calendly.com/sai-vertex";
+export const CALENDLY_PLACEHOLDER = "https://calendly.com/sai-aurosy";
 
 export const store = {
   title: "Store",
@@ -122,6 +122,40 @@ export const store = {
         {
           title: "Facial expression and gestures",
           description: "Expresses emotions and reactions",
+        },
+      ],
+    },
+    {
+      id: "agibot-a2-ultra",
+      name: "AGIBOT A2 Ultra",
+      image: "/agibot-a2-ultra.png",
+      overview:
+        "AGIBOT A2 Ultra is an intelligent service robot designed to interact with people and assist in public and commercial environments. It can see, hear, speak, and move autonomously, allowing it to greet visitors, provide information, and guide people in places such as shopping malls, museums, and offices.",
+      capabilities: [
+        {
+          title: "Human Interaction",
+          description:
+            "Communicates through voice, visual recognition, and expressive behavior",
+        },
+        {
+          title: "Autonomous Navigation",
+          description:
+            "Moves independently indoors and avoids obstacles while following routes",
+        },
+        {
+          title: "Visitor Assistance",
+          description:
+            "Greets guests, answers questions, and guides people to locations",
+        },
+        {
+          title: "Environmental Perception",
+          description:
+            "Uses cameras and sensors to detect people and understand surroundings",
+        },
+        {
+          title: "Connectivity",
+          description:
+            "Connects to external platforms to receive tasks and send operational data",
         },
       ],
     },

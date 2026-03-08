@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import DifferentiationSection from "@/components/DifferentiationSection";
 import StoreSection from "@/components/StoreSection";
 import SolutionsByIndustry from "@/components/SolutionsByIndustry";
-import WhySAIVertex from "@/components/WhySAIVertex";
+import WhySAIAurosy from "@/components/WhySAIAurosy";
 import DeploymentModel from "@/components/DeploymentModel";
 import GovernanceSection from "@/components/GovernanceSection";
 import ContactSection from "@/components/ContactSection";
@@ -18,7 +18,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-black bg-grid-pattern bg-grid">
         <Header />
         <Hero />
-        <WhySAIVertex />
+        <WhySAIAurosy />
         <SolutionsByIndustry />
         <DifferentiationSection />
         <StoreSection />
