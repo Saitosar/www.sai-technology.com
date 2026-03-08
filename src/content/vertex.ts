@@ -93,3 +93,37 @@ export const inquiryTypes = [
 ] as const;
 
 export const CALENDLY_PLACEHOLDER = "https://calendly.com/sai-vertex";
+
+export const store = {
+  title: "Store",
+  subtitle: "Order robots",
+  telegramSalesUrl: "https://t.me/Arif_Mammadov1",
+  orderMessageTemplate: "Хочу заказать робота",
+  products: [
+    {
+      id: "agibot-x2",
+      name: "Agibot X2",
+      image: "/agibot-x2.png",
+      overview:
+        "AGIBOT X2 is an intelligent service robot designed to interact naturally with people. It can see, hear, speak, move, and respond to human actions in real environments.",
+      capabilities: [
+        {
+          title: "Voice interaction",
+          description: "Understands speech and responds verbally",
+        },
+        {
+          title: "Visual recognition",
+          description: "Detects people and objects using cameras",
+        },
+        {
+          title: "Touch interaction",
+          description: "Responds to physical input",
+        },
+        {
+          title: "Facial expression and gestures",
+          description: "Expresses emotions and reactions",
+        },
+      ],
+    },
+  ],
+} as const;
