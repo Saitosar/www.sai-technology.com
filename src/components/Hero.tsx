@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { hero, proofStripItems, ctaLinks } from "@/content/vertex";
+import { hero, proofStripItems, ctaLinks } from "@/content/aurosy";
 import { springTransition } from "@/lib/motion";
 
 export default function Hero() {

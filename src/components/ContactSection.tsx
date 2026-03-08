@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
 import ContactForm from "./ContactForm";
-import { CALENDLY_PLACEHOLDER, ctaLinks } from "@/content/vertex";
+import { CALENDLY_PLACEHOLDER, ctaLinks } from "@/content/aurosy";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { springTransition } from "@/lib/motion";
 import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";

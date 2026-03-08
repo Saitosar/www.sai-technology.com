@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { differentiation } from "@/content/vertex";
+import { differentiation } from "@/content/aurosy";
 import { springTransition, staggerContainer, fadeUp } from "@/lib/motion";
 import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";
 

@@ -10,7 +10,7 @@ import {
   ClipboardList,
   type LucideIcon,
 } from "lucide-react";
-import { governanceCards } from "@/content/vertex";
+import { governanceCards } from "@/content/aurosy";
 
 const iconMap: Record<string, LucideIcon> = {
   ShieldCheck,

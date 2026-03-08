@@ -44,7 +44,7 @@ const whyItems = [
   },
 ];
 
-export default function WhySAIVertex() {
+export default function WhySAIAurosy() {
   const sectionRef = useSectionInView("why-us");
   return (
     <section ref={sectionRef} id="why-us" className="relative py-20 md:py-24 overflow-hidden border-t border-white/5">
@@ -61,7 +61,7 @@ export default function WhySAIVertex() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-            Why <span className="text-electric-blue text-glow-blue">SAI Vertex</span>
+            Why <span className="text-electric-blue text-glow-blue">SAI AUROSY</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-sm">
             Strategic regional player.

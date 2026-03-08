@@ -12,7 +12,7 @@ export default function Footer() {
             viewport={{ once: true }}
             className="text-sm text-gray-500 tracking-[0.2em] uppercase"
           >
-            SAI Vertex
+            SAI AUROSY
           </motion.p>
           <div className="flex items-center gap-6 flex-wrap justify-center">
             <a
@@ -31,7 +31,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="mt-8 text-center text-xs text-gray-600"
         >
-          © {new Date().getFullYear()} SAI Vertex. All rights reserved.
+          © {new Date().getFullYear()} SAI AUROSY. All rights reserved.
         </motion.p>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { store } from "@/content/vertex";
+import { store } from "@/content/aurosy";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { springTransition, staggerContainer, fadeUp } from "@/lib/motion";
 import { useSectionInView } from "@/hooks/useActiveSectionOnScroll";

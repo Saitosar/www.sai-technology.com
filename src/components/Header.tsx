@@ -50,7 +50,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link href="/" className="cursor-pointer flex items-center gap-3">
             <Image
-              src="/sai-vertex-logo.png"
+              src="/sai-aurosy-logo.png"
               alt=""
               width={180}
               height={48}
@@ -58,7 +58,7 @@ export default function Header() {
               className="h-10 w-auto md:h-12"
             />
             <span className="font-heading text-xl font-semibold tracking-wider text-white">
-              SAI Vertex
+              SAI AUROSY
             </span>
           </Link>
 
