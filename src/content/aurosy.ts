@@ -127,10 +127,10 @@ export const store = {
     },
     {
       id: "agibot-a2-ultra",
-      name: "AGIBOT A2 Ultra",
+      name: "AGIBOT A2",
       image: "/agibot-a2-ultra.png",
       overview:
-        "AGIBOT A2 Ultra is an intelligent service robot designed to interact with people and assist in public and commercial environments. It can see, hear, speak, and move autonomously, allowing it to greet visitors, provide information, and guide people in places such as shopping malls, museums, and offices.",
+        "AGIBOT A2 is an intelligent service robot designed to interact with people and assist in public and commercial environments. It can see, hear, speak, and move autonomously, allowing it to greet visitors, provide information, and guide people in places such as shopping malls, museums, and offices.",
       capabilities: [
         {
           title: "Human Interaction",
