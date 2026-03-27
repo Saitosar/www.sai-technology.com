@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Rajdhani, Orbitron } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const rajdhani = Rajdhani({
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${rajdhani.variable} ${orbitron.variable} font-sans antialiased bg-black text-gray-100 min-h-screen`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
